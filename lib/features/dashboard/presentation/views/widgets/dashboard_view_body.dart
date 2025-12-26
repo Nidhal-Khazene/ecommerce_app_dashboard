@@ -1,3 +1,4 @@
+import 'package:ecommerce_app_dashboard/core/utils/colors_data.dart';
 import 'package:ecommerce_app_dashboard/core/widgets/custom_button.dart';
 import 'package:ecommerce_app_dashboard/features/add_product/presentation/views/add_product_view.dart';
 import 'package:flutter/material.dart';
@@ -14,9 +15,10 @@ class DashboardViewBody extends StatelessWidget {
           onPressed: () {
             Navigator.pushNamed(context, AddProductView.routeName);
           },
-          text: "Add Data",
+          text: "add product",
+          backgroundColor: ColorsData.kLightPrimaryColor,
           textStyle: TextStyle(
-            fontSize: 24,
+            fontSize: 22,
             fontWeight: FontWeight.w500,
             color: Colors.white,
           ),
