@@ -43,7 +43,7 @@ class _AddProductViewBodyState extends State<AddProductViewBody> {
               maxLines: 5,
             ),
             SizedBox(height: 16),
-            ImageField(),
+            ImageField(onFileChanged: (image) {}),
           ],
         ),
       ),
