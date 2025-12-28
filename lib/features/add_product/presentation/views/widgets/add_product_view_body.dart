@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:ecommerce_app_dashboard/core/helper/show_snack_bar.dart';
 import 'package:ecommerce_app_dashboard/core/widgets/custom_button.dart';
 import 'package:ecommerce_app_dashboard/core/widgets/custom_text_form_field.dart';
+import 'package:ecommerce_app_dashboard/features/add_product/domain/entities/add_product_input_entity.dart';
 import 'package:ecommerce_app_dashboard/features/add_product/presentation/views/widgets/image_field.dart';
 import 'package:ecommerce_app_dashboard/features/add_product/presentation/views/widgets/is_featured_field.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +18,6 @@ class AddProductViewBody extends StatefulWidget {
 class _AddProductViewBodyState extends State<AddProductViewBody> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   AutovalidateMode autoValidateMode = AutovalidateMode.disabled;
-  bool isSelected = false;
   late String productName, productCode, productDescription;
   late num productPrice;
   File? fileImage;
@@ -82,6 +82,14 @@ class _AddProductViewBodyState extends State<AddProductViewBody> {
                 if (fileImage != null) {
                   if (_formKey.currentState!.validate()) {
                     _formKey.currentState!.save();
+                    AddProductInputEntity input = AddProductInputEntity(
+                      productName: productName,
+                      productCode: productCode,
+                      productDescription: productDescription,
+                      productPrice: productPrice,
+                      fileImage: fileImage!,
+                      isFeatured: isFeatured,
+                    );
                   } else {
                     autoValidateMode = AutovalidateMode.always;
                     setState(() {});
