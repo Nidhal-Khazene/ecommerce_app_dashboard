@@ -2,7 +2,7 @@ import 'dart:io';
 
 class AddProductInputEntity {
   final String productName, productCode, productDescription;
-  final String? urlImage;
+  String? urlImage;
   final num productPrice;
   final File fileImage;
   final bool isFeatured;
