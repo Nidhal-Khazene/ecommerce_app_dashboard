@@ -4,5 +4,5 @@ import 'package:dartz/dartz.dart';
 import 'package:ecommerce_app_dashboard/core/errors/failures.dart';
 
 abstract class ImagesRepo {
-  Future<Either<Failure, String>> uploadImage(File fileImage, String path);
+  Future<Either<Failure, String>> uploadImage(File fileImage);
 }

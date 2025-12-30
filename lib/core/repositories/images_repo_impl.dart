@@ -10,10 +10,7 @@ class ImagesRepoImpl implements ImagesRepo {
   final StorageService storageService;
   ImagesRepoImpl(this.storageService);
   @override
-  Future<Either<Failure, String>> uploadImage(
-    File fileImage,
-    String path,
-  ) async {
+  Future<Either<Failure, String>> uploadImage(File fileImage) async {
     try {
       String url = await storageService.uploadFile(
         fileImage,
