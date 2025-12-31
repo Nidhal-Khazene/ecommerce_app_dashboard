@@ -1,10 +1,28 @@
+import 'package:dartz/dartz.dart';
+import 'package:ecommerce_app_dashboard/core/errors/failures.dart';
 import 'package:ecommerce_app_dashboard/core/repositories/product_repo.dart';
+import 'package:ecommerce_app_dashboard/core/services/database_service.dart';
+import 'package:ecommerce_app_dashboard/core/utils/backend_break_point.dart';
+import 'package:ecommerce_app_dashboard/features/add_product/data/models/add_product_input_model.dart';
 import 'package:ecommerce_app_dashboard/features/add_product/domain/entities/add_product_input_entity.dart';
 
 class ProductRepoImpl implements ProductRepo {
+  final DatabaseService databaseService;
+
+  ProductRepoImpl({required this.databaseService});
+
   @override
-  Future<void> addProduct(AddProductInputEntity addProductInputEntity) {
-    // TODO: implement addProduct
-    throw UnimplementedError();
+  Future<Either<Failure, void>> addProduct(
+    AddProductInputEntity addProductInputEntity,
+  ) async {
+    try {
+      await databaseService.addData(
+        path: BackendBreakPoint.productCollections,
+        data: AddProductInputModel.fromEntity(addProductInputEntity).toJson(),
+      );
+      return const Right(null);
+    } catch (e) {
+      return Left(ServerFailure(message: "Failed to add product"));
+    }
   }
 }
