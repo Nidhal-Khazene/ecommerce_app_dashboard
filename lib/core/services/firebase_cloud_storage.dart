@@ -9,10 +9,11 @@ class FirebaseCloudStorage implements StorageService {
   @override
   Future<String> uploadFile(File file, String path) async {
     final fileName = p.basename(file.path);
-    final fileExtension = p.extension(file.path);
-    var fileRef = storageRef.child("$path/$fileName.$fileExtension");
-    await fileRef.putFile(file);
-    String fileUrl = await fileRef.getDownloadURL();
-    return fileUrl;
+
+    final fileRef = storageRef.child("$path/$fileName");
+
+    await fileRef.putFile(file, SettableMetadata(contentType: 'image/jpeg'));
+
+    return await fileRef.getDownloadURL();
   }
 }

@@ -9,19 +9,36 @@ part 'add_product_state.dart';
 class AddProductCubit extends Cubit<AddProductState> {
   AddProductCubit(this.imagesRepo, this.productRepo)
     : super(AddProductInitial());
+
   final ImagesRepo imagesRepo;
   final ProductRepo productRepo;
 
   Future<void> addProduct(AddProductInputEntity addProductInputEntity) async {
     emit(AddProductLoading());
-    var result = await imagesRepo.uploadImage(addProductInputEntity.fileImage);
-    result.fold(
-      (failure) => emit(AddProductFailure(errMessage: failure.message)),
+
+    final imageResult = await imagesRepo.uploadImage(
+      addProductInputEntity.fileImage,
+    );
+
+    // ❌ before: fold(...) without await
+    // ✅ now: await fold(...)
+    await imageResult.fold(
+      (failure) async {
+        emit(AddProductFailure(errMessage: failure.message));
+      },
       (url) async {
         addProductInputEntity.urlImage = url;
-        var result = await productRepo.addProduct(addProductInputEntity);
-        result.fold(
-          (failure) => AddProductFailure(errMessage: failure.message),
+
+        final productResult = await productRepo.addProduct(
+          addProductInputEntity,
+        );
+
+        // ❌ before: async inside fold not awaited
+        // ✅ now: this runs after upload completes
+        productResult.fold(
+          (failure) {
+            emit(AddProductFailure(errMessage: failure.message));
+          },
           (_) {
             emit(AddProductSuccess());
           },

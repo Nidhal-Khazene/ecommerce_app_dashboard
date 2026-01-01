@@ -12,7 +12,7 @@ class ProductRepoImpl implements ProductRepo {
   ProductRepoImpl({required this.databaseService});
 
   @override
-  Future<Either<Failure, void>> addProduct(
+  Future<Either<Failure, Unit>> addProduct(
     AddProductInputEntity addProductInputEntity,
   ) async {
     try {
@@ -20,7 +20,7 @@ class ProductRepoImpl implements ProductRepo {
         path: BackendBreakPoint.productCollections,
         data: AddProductInputModel.fromEntity(addProductInputEntity).toJson(),
       );
-      return const Right(null);
+      return const Right(unit);
     } catch (e) {
       return Left(ServerFailure(message: "Failed to add product"));
     }

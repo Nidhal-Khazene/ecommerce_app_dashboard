@@ -85,7 +85,6 @@ class _ImageFieldState extends State<ImageField> {
                       },
                       icon: Icon(
                         Icons.delete_rounded,
-                        size: 32,
                         color: ColorsData.kLightPrimaryColor,
                       ),
                     ),
