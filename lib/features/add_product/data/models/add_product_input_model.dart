@@ -10,21 +10,23 @@ class AddProductInputModel {
   final int expirationsMonth;
   final bool isOrganic;
   final int numberOfCalories;
-  final num avrRating = 0;
-  final num ratingCount = 0;
+  final num avrRating;
+  final num ratingCount;
 
   final int unitAmount;
 
   AddProductInputModel({
+    this.avrRating = 0,
+    this.ratingCount = 0,
     required this.expirationsMonth,
-    required this.isOrganic,
+    this.isOrganic = false,
     required this.numberOfCalories,
     required this.unitAmount,
     required this.productName,
     required this.productCode,
     required this.productDescription,
     required this.productPrice,
-    required this.isFeatured,
+    this.isFeatured = false,
     this.urlImage,
   });
 
@@ -40,6 +42,8 @@ class AddProductInputModel {
       isOrganic: entity.isOrganic,
       numberOfCalories: entity.numberOfCalories,
       unitAmount: entity.unitAmount,
+      avrRating: entity.avrRating,
+      ratingCount: entity.ratingCount,
     );
   }
 
@@ -55,6 +59,8 @@ class AddProductInputModel {
       "isOrganic": isOrganic,
       "numberOfCalories": numberOfCalories,
       "unitAmount": unitAmount,
+      "avrRating": avrRating,
+      "ratingCount": ratingCount,
     };
   }
 }

@@ -9,12 +9,14 @@ class AddProductInputEntity {
   final int expirationsMonth;
   final bool isOrganic;
   final int numberOfCalories;
-  final num avrRating = 0;
-  final num ratingCount = 0;
+  final num avrRating;
+  final num ratingCount;
 
   final int unitAmount;
 
   AddProductInputEntity({
+    this.avrRating = 0,
+    this.ratingCount = 0,
     required this.expirationsMonth,
     required this.isOrganic,
     required this.numberOfCalories,
