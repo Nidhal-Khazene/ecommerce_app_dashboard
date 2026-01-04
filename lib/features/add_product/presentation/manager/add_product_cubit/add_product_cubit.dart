@@ -20,8 +20,6 @@ class AddProductCubit extends Cubit<AddProductState> {
       addProductInputEntity.fileImage,
     );
 
-    // ❌ before: fold(...) without await
-    // ✅ now: await fold(...)
     await imageResult.fold(
       (failure) async {
         emit(AddProductFailure(errMessage: failure.message));
@@ -33,8 +31,6 @@ class AddProductCubit extends Cubit<AddProductState> {
           addProductInputEntity,
         );
 
-        // ❌ before: async inside fold not awaited
-        // ✅ now: this runs after upload completes
         productResult.fold(
           (failure) {
             emit(AddProductFailure(errMessage: failure.message));

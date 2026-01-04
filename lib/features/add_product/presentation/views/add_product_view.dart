@@ -22,8 +22,10 @@ class AddProductView extends StatelessWidget {
         child: Padding(
           padding: kPrimaryScreenPadding,
           child: BlocProvider(
-            create: (context) =>
-                AddProductCubit(getIt<ImagesRepo>(), getIt<ProductRepo>()),
+            create: (context) => AddProductCubit(
+              imagesRepo: getIt<ImagesRepo>(),
+              productRepo: getIt<ProductRepo>(),
+            ),
             child: AddProductViewBody(),
           ),
         ),
