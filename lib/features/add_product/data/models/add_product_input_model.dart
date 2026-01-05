@@ -1,3 +1,4 @@
+import 'package:ecommerce_app_dashboard/features/add_product/data/models/review_model.dart';
 import 'package:ecommerce_app_dashboard/features/add_product/domain/entities/add_product_input_entity.dart';
 
 class AddProductInputModel {
@@ -13,8 +14,10 @@ class AddProductInputModel {
   final num avrRating;
   final num ratingCount;
   final int unitAmount;
+  final List<ReviewModel> reviews;
 
   AddProductInputModel({
+    required this.reviews,
     this.avrRating = 0,
     this.ratingCount = 0,
     required this.expirationsMonth,
@@ -31,6 +34,7 @@ class AddProductInputModel {
 
   factory AddProductInputModel.fromEntity(AddProductInputEntity entity) {
     return AddProductInputModel(
+      reviews: entity.reviews.map((e) => ReviewModel.fromEntity(e)).toList(),
       productName: entity.productName,
       productCode: entity.productCode,
       productDescription: entity.productDescription,
@@ -60,6 +64,7 @@ class AddProductInputModel {
       "unitAmount": unitAmount,
       "avrRating": avrRating,
       "ratingCount": ratingCount,
+      "reviews": reviews.map((e) => e.toJson()).toList(),
     };
   }
 }

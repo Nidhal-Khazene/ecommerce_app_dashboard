@@ -119,6 +119,7 @@ class _AddProductViewBodyState extends State<AddProductViewBody> {
                     _formKey.currentState!.save();
                     AddProductInputEntity addProductInputEntity =
                         AddProductInputEntity(
+                          reviews: [],
                           productName: productName,
                           productCode: productCode,
                           productDescription: productDescription,
