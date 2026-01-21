@@ -20,7 +20,10 @@ class SupabaseStorageService implements StorageService {
       }
     }
     if (!isBucketExist) {
-      _supabase.client.storage.createBucket(bucketName);
+      _supabase.client.storage.createBucket(
+        bucketName,
+        BucketOptions(public: true),
+      );
     }
   }
 
@@ -37,6 +40,10 @@ class SupabaseStorageService implements StorageService {
     var result = await _supabase.client.storage
         .from(BackendBreakPoint.images)
         .upload("$path/$fileName", file);
+    final String publicUrl = _supabase.client.storage
+        .from(BackendBreakPoint.images)
+        .getPublicUrl("$path/$fileName");
+
     return result;
   }
 }
