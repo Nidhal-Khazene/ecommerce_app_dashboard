@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:ecommerce_app_dashboard/core/helper/show_snack_bar.dart';
 import 'package:ecommerce_app_dashboard/core/widgets/custom_button.dart';
 import 'package:ecommerce_app_dashboard/core/widgets/custom_text_form_field.dart';
-import 'package:ecommerce_app_dashboard/features/add_product/domain/entities/add_product_input_entity.dart';
+import 'package:ecommerce_app_dashboard/features/add_product/domain/entities/product_entity.dart';
 import 'package:ecommerce_app_dashboard/features/add_product/presentation/manager/add_product_cubit/add_product_cubit.dart';
 import 'package:ecommerce_app_dashboard/features/add_product/presentation/views/widgets/image_field.dart';
 import 'package:ecommerce_app_dashboard/features/add_product/presentation/views/widgets/is_featured_field.dart';
@@ -117,20 +117,19 @@ class _AddProductViewBodyState extends State<AddProductViewBody> {
                 if (fileImage != null) {
                   if (_formKey.currentState!.validate()) {
                     _formKey.currentState!.save();
-                    AddProductInputEntity addProductInputEntity =
-                        AddProductInputEntity(
-                          reviews: [],
-                          productName: productName,
-                          productCode: productCode,
-                          productDescription: productDescription,
-                          productPrice: productPrice,
-                          fileImage: fileImage!,
-                          isFeatured: isFeatured,
-                          isOrganic: isOrganic,
-                          unitAmount: unitAmount,
-                          numberOfCalories: numberOfCalories,
-                          expirationsMonth: expirationsMonth,
-                        );
+                    ProductEntity addProductInputEntity = ProductEntity(
+                      reviews: [],
+                      productName: productName,
+                      productCode: productCode,
+                      productDescription: productDescription,
+                      productPrice: productPrice,
+                      fileImage: fileImage!,
+                      isFeatured: isFeatured,
+                      isOrganic: isOrganic,
+                      unitAmount: unitAmount,
+                      numberOfCalories: numberOfCalories,
+                      expirationsMonth: expirationsMonth,
+                    );
                     context.read<AddProductCubit>().addProduct(
                       addProductInputEntity,
                     );

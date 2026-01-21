@@ -1,7 +1,7 @@
 import 'package:ecommerce_app_dashboard/features/add_product/data/models/review_model.dart';
-import 'package:ecommerce_app_dashboard/features/add_product/domain/entities/add_product_input_entity.dart';
+import 'package:ecommerce_app_dashboard/features/add_product/domain/entities/product_entity.dart';
 
-class AddProductInputModel {
+class ProductModel {
   final String productName;
   final String productCode;
   final String productDescription;
@@ -16,7 +16,7 @@ class AddProductInputModel {
   final int unitAmount;
   final List<ReviewModel> reviews;
 
-  AddProductInputModel({
+  ProductModel({
     required this.reviews,
     this.avrRating = 0,
     this.ratingCount = 0,
@@ -32,8 +32,8 @@ class AddProductInputModel {
     this.urlImage,
   });
 
-  factory AddProductInputModel.fromEntity(AddProductInputEntity entity) {
-    return AddProductInputModel(
+  factory ProductModel.fromEntity(ProductEntity entity) {
+    return ProductModel(
       reviews: entity.reviews.map((e) => ReviewModel.fromEntity(e)).toList(),
       productName: entity.productName,
       productCode: entity.productCode,
