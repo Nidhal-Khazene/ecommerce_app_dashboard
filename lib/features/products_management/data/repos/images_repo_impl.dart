@@ -42,7 +42,7 @@ class ImagesRepoImpl implements ImagesRepo {
     try {
       await storageService.deleteFile(imagePath);
       return right(null);
-    } on Exception catch (e) {
+    } on Exception {
       return left(ServerFailure(message: "فشل حذف الصورة!"));
     }
   }

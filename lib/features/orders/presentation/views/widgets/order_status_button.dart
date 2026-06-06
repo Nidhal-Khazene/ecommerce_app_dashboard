@@ -6,8 +6,7 @@ import 'package:ecommerce_app_dashboard/features/orders/presentation/views/widge
 import 'package:flutter/material.dart';
 
 class OrderStatusButton extends StatelessWidget {
-  const OrderStatusButton({Key? key, required this.orderEntity})
-    : super(key: key);
+  const OrderStatusButton({super.key, required this.orderEntity});
   final OrderEntity orderEntity;
 
   Color _statusTextColor(OrderStatusEnum status) {
@@ -43,7 +42,7 @@ class OrderStatusButton extends StatelessWidget {
     final backgroundColor = _statusBackgroundColor(status);
 
     return FilterSectionItem(
-      textContent: "${status.name}",
+      textContent: status.name,
       textColor: textColor,
       backgroundColor: backgroundColor,
       borderColor: textColor,

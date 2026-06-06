@@ -87,7 +87,7 @@ class ProductsRepoImpl implements ProductsRepo {
         documentId: productCode,
       );
       return right(null);
-    } on Exception catch (e) {
+    } on Exception {
       return left(ServerFailure(message: "فشل حذف المنتج!"));
     }
   }
